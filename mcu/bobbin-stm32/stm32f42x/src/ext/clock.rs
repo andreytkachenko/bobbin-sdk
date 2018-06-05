@@ -1,15 +1,10 @@
 use bobbin_mcu::hz::Hz;
 use bobbin_mcu::clock::{Clock, ClockFor, ClockSource};
 use bobbin_bits::*;
-
-use ext::rcc::*;
-
 use rcc::RCC;
 use flash::FLASH;
 use pwr::PWR;
 use clock::*;
-
-
 use ::core::intrinsics::abort;
 
 #[derive(Default)]
@@ -30,71 +25,45 @@ pub struct DynamicClock<OSC: Clock, OSC32: Clock>(OSC, OSC32);
 impl<OSC: Clock, OSC32: Clock> DynamicClock<OSC, OSC32> {
     fn pllq(&self) -> Hz {
         let cfgr = RCC.pllcfgr();
+
         let vco_in = match cfgr.pllsrc() {
             U1::B0 => self.hsi(),
             U1::B1 => self.hse(),
         };
+
         let vco = (vco_in / cfgr.pllm().into_u32()).normalized() * cfgr.plln().into_u32();
+
         (vco / cfgr.pllq().into_u32()).normalized()
     }    
 }
 
-
-macro_rules! impl_usart_clock_source {
+macro_rules! impl_clock_source {
     ($periph:path, $id:ident, $default:ident) => {
         fn $id(&self) -> Hz {
-            match $periph.clock_source() {
-                UsartClock::Pclk => self.$default(),
-                UsartClock::Sysclk => self.sysclk(),
-                UsartClock::Lse => self.lse(),
-                UsartClock::Hsi => self.hsi(),
-            }
-        }        
-    };
-}
-
-
-macro_rules! impl_i2c_clock_source {
-    ($periph:path, $id:ident, $default:ident) => {
-        fn $id(&self) -> Hz {
-            match $periph.clock_source() {
-                I2cClock::Hsi => self.hsi(),
-                I2cClock::Sysclk => self.sysclk(),
-            }
-        }        
-    };
-}
-
-macro_rules! impl_tim_clock_source {
-    ($periph:path, $id:ident, $default:ident) => {
-        fn $id(&self) -> Hz {
-            match $periph.clock_source() {
-                TimClock::Pclk => self.$default(),
-                TimClock::Pll => self.pllclk(),
-            }
-        }        
+            self.$default()
+        }
     };
 }
 
 impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
     type Osc = OSC;
     type Osc32 = OSC32;
+
     fn pllclk(&self) -> Hz {
         let cfgr = RCC.pllcfgr();
+
         let vco_in = match cfgr.pllsrc() {
             U1::B0 => self.lsi(),
             U1::B1 => self.hse(),
         };
+
         let vco = (vco_in / cfgr.pllm().into_u32()).normalized();
-        (vco  * cfgr.plln().into_u32() / (2 * (cfgr.pllp().into_u32() + 1))).normalized()
+
+        (vco * cfgr.plln().into_u32() / (2 * (cfgr.pllp().into_u32() + 1))).normalized()
     }
 
     fn pll48clk(&self) -> Hz {
-        unimplemented!()
-        // match RCC.dckcfgr().ck48msel() {
-        //     U1::B0 => self.pllq(),
-        //     U1::B1 => unsafe { abort() },
-        // }
+        self.pllq()
     }
 
     fn sysclk(&self) -> Hz {
@@ -126,6 +95,7 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
             U4::B1110 => 8,
             U4::B1111 => 9,
         };
+
         self.sysclk() >> shift
     }    
 
@@ -144,14 +114,8 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
             U3::B110 => 3,
             U3::B111 => 4,
         };
-        self.hclk() >> shift
-    }
 
-    fn tim_pclk1(&self) -> Hz {
-        match RCC.cfgr().ppre1() {
-            U3::B000 | U3::B001 | U3::B010 | U3::B011 => self.pclk1(),
-            _ => self.pclk1() << 1,        
-        }
+        self.hclk() >> shift
     }
 
     fn pclk2(&self) -> Hz {
@@ -165,38 +129,37 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
             U3::B110 => 3,
             U3::B111 => 4,
         };
+
         self.hclk() >> shift
     }
 
-    fn tim_pclk2(&self) -> Hz {
-        match RCC.cfgr().ppre2() {
-            U3::B000 | U3::B001 | U3::B010 | U3::B011 => self.pclk2(),
-            _ => self.pclk2() << 1,
-        }
-    }
+    impl_clock_source!(::usart::USART1, usart1, pclk2);
+    impl_clock_source!(::usart::USART2, usart2, pclk1);
+    impl_clock_source!(::usart::USART3, usart3, pclk1);
+    impl_clock_source!(::usart::UART4, uart4, pclk1);
+    impl_clock_source!(::usart::UART5, uart5, pclk1);
+    impl_clock_source!(::usart::USART6, usart6, pclk2);
+    impl_clock_source!(::usart::UART7, uart7, pclk1);
+    impl_clock_source!(::usart::UART8, uart8, pclk1);
 
-    impl_usart_clock_source!(::usart::USART1, usart1, pclk2);
-    impl_usart_clock_source!(::usart::USART2, usart2, pclk1);
-    impl_usart_clock_source!(::usart::USART3, usart3, pclk1);
-    impl_usart_clock_source!(::usart::UART4, uart4, pclk1);
-    impl_usart_clock_source!(::usart::UART5, uart5, pclk1);
-    impl_usart_clock_source!(::usart::USART6, usart6, pclk2);
-    impl_usart_clock_source!(::usart::UART7, uart7, pclk1);
-    impl_usart_clock_source!(::usart::UART8, uart8, pclk1);
+    impl_clock_source!(::i2c::I2C1, i2c1, pclk1);
+    impl_clock_source!(::i2c::I2C2, i2c2, pclk1);
+    impl_clock_source!(::i2c::I2C3, i2c3, pclk1);
 
-    impl_i2c_clock_source!(::i2c::I2C1, i2c1, pclk1);
-    impl_i2c_clock_source!(::i2c::I2C2, i2c2, pclk1);
-    impl_i2c_clock_source!(::i2c::I2C3, i2c3, pclk1);
-
-    // impl_tim_clock_source!(tim_adv::TIM1, tim1, pclk2);
-    // impl_tim_clock_source!(tim_gen::TIM2, tim2, pclk2);
-    // impl_tim_clock_source!(tim_gen::TIM3, tim3, pclk2);
-    // impl_tim_clock_source!(tim_gen::TIM4, tim4, pclk2);
-    // impl_tim_clock_source!(tim_adv::TIM8, tim8, pclk2);
-    // impl_tim_clock_source!(tim_gen::TIM15, tim15, pclk2);
-    // impl_tim_clock_source!(tim_gen::TIM16, tim16, pclk2);
-    // impl_tim_clock_source!(tim_adv::TIM20, tim20, pclk2);
-    
+    impl_clock_source!(tim_adv::TIM1, tim1, pclk1);
+    impl_clock_source!(tim_gen::TIM2, tim2, pclk2);
+    impl_clock_source!(tim_gen::TIM3, tim3, pclk2);
+    impl_clock_source!(tim_gen::TIM4, tim4, pclk2);
+    impl_clock_source!(tim_gen::TIM5, tim5, pclk2);
+    impl_clock_source!(tim_bas::TIM6, tim6, pclk2);
+    impl_clock_source!(tim_bas::TIM7, tim7, pclk2);
+    impl_clock_source!(tim_adv::TIM8, tim8, pclk1);
+    impl_clock_source!(tim_gen::TIM9, tim9, pclk1);
+    impl_clock_source!(tim_gen::TIM10, tim10, pclk1);
+    impl_clock_source!(tim_gen::TIM11, tim11, pclk1);
+    impl_clock_source!(tim_gen::TIM12, tim12, pclk2);
+    impl_clock_source!(tim_gen::TIM13, tim13, pclk2);
+    impl_clock_source!(tim_gen::TIM14, tim14, pclk2);
 }
 
 impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {

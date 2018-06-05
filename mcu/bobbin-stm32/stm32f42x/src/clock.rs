@@ -40,17 +40,12 @@ pub trait ClockProvider : Default {
     fn fclk(&self) -> Hz { unimplemented!() }
     fn pclk1(&self) -> Hz { unimplemented!() }
     fn pclk2(&self) -> Hz { unimplemented!() }
-    fn tim_pclk1(&self) -> Hz { unimplemented!() }
-    fn tim_pclk2(&self) -> Hz { unimplemented!() }
     fn rtc(&self) -> Hz { unimplemented!() }
     fn sdmmc(&self) -> Hz { unimplemented!() }
     fn hdmi_cec(&self) -> Hz { unimplemented!() }
     fn spdif(&self) -> Hz { unimplemented!() }
     fn sai1(&self) -> Hz { unimplemented!() }
     fn sai2(&self) -> Hz { unimplemented!() }
-    fn eth_mactx(&self) -> Hz { unimplemented!() }
-    fn eth_macrx(&self) -> Hz { unimplemented!() }
-    fn eth_macrmii(&self) -> Hz { unimplemented!() }
     fn usart1(&self) -> Hz { unimplemented!() }
     fn usart2(&self) -> Hz { unimplemented!() }
     fn usart3(&self) -> Hz { unimplemented!() }
@@ -62,5 +57,19 @@ pub trait ClockProvider : Default {
     fn i2c1(&self) -> Hz { unimplemented!() }
     fn i2c2(&self) -> Hz { unimplemented!() }
     fn i2c3(&self) -> Hz { unimplemented!() }
+    fn tim1(&self) -> Hz { unimplemented!() }
+    fn tim2(&self) -> Hz { unimplemented!() }
+    fn tim3(&self) -> Hz { unimplemented!() }
+    fn tim4(&self) -> Hz { unimplemented!() }
+    fn tim5(&self) -> Hz { unimplemented!() }
+    fn tim6(&self) -> Hz { unimplemented!() }
+    fn tim7(&self) -> Hz { unimplemented!() }
+    fn tim8(&self) -> Hz { unimplemented!() }
+    fn tim9(&self) -> Hz { unimplemented!() }
+    fn tim10(&self) -> Hz { unimplemented!() }
+    fn tim11(&self) -> Hz { unimplemented!() }
+    fn tim12(&self) -> Hz { unimplemented!() }
+    fn tim13(&self) -> Hz { unimplemented!() }
+    fn tim14(&self) -> Hz { unimplemented!() }
 }
 

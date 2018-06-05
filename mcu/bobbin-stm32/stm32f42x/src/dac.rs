@@ -1,5 +1,5 @@
 
-::bobbin_mcu::periph!( DAC, Dac, DAC_PERIPH, DacPeriph, DAC_OWNED, DAC_REF_COUNT, 0x40007400, 0x00, 0x08);
+::bobbin_mcu::periph!( DAC, Dac, DAC_PERIPH, DacPeriph, DAC_OWNED, DAC_REF_COUNT, 0x40007400, 0x00, 0x05);
 
 
 #[doc="Digital-to-analog converter"]

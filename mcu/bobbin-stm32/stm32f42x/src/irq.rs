@@ -1374,5 +1374,4 @@ pub static mut INTERRUPTS: [Option<Handler>; 91] = [
 ::bobbin_mcu::irq!(::dma::Dma2Stream7, IrqDma, Irq70);
 ::bobbin_mcu::irq!(::rcc::Rcc, ::bobbin_mcu::irq::IrqMain, Irq5);
 ::bobbin_mcu::irq!(::pwr::Pwr, ::bobbin_mcu::irq::IrqMain, Irq1);
-::bobbin_mcu::irq!(::ethernet_mac::EthernetMac, ::bobbin_mcu::irq::IrqMain, Irq61);
 ::bobbin_mcu::irq!(::dac::Dac, ::bobbin_mcu::irq::IrqMain, Irq54);
