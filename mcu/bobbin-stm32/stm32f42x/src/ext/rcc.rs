@@ -34,11 +34,13 @@ macro_rules! impl_clocksource {
     ($periph:path, $getter:ident, $setter:ident) => {
         impl ClockSource<DedicatedClock> for $periph {
             fn clock_source(&self) -> DedicatedClock {
-                ::rcc::RCC.dckcfgr2().$getter().into()
+                // ::rcc::RCC.dckcfgr2().$getter().into()
+                unimplemented!()
             }
             fn set_clock_source(&self, clk: DedicatedClock) -> &Self {
-                ::rcc::RCC.with_dckcfgr2(|r| r.$setter(clk));
-                self
+                // ::rcc::RCC.with_dckcfgr2(|r| r.$setter(clk));
+                // self
+                unimplemented!()
             }
         }        
     };
