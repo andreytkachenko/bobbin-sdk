@@ -2841,17 +2841,17 @@ impl Apb1rstr {
     }
 
     #[doc="USART 3 reset"]
-    #[inline] pub fn uart3rst(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn usart3rst(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Returns true if UART3RST != 0"]
-    #[inline] pub fn test_uart3rst(&self) -> bool {
-        self.uart3rst() != 0
+    #[doc="Returns true if USART3RST != 0"]
+    #[inline] pub fn test_usart3rst(&self) -> bool {
+        self.usart3rst() != 0
     }
 
-    #[doc="Sets the UART3RST field."]
-    #[inline] pub fn set_uart3rst<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the USART3RST field."]
+    #[inline] pub fn set_usart3rst<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 18);
@@ -2860,17 +2860,17 @@ impl Apb1rstr {
     }
 
     #[doc="USART 2 reset"]
-    #[inline] pub fn uart2rst(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn usart2rst(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Returns true if UART2RST != 0"]
-    #[inline] pub fn test_uart2rst(&self) -> bool {
-        self.uart2rst() != 0
+    #[doc="Returns true if USART2RST != 0"]
+    #[inline] pub fn test_usart2rst(&self) -> bool {
+        self.usart2rst() != 0
     }
 
-    #[doc="Sets the UART2RST field."]
-    #[inline] pub fn set_uart2rst<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the USART2RST field."]
+    #[inline] pub fn set_usart2rst<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 17);
@@ -3135,8 +3135,8 @@ impl ::core::fmt::Debug for Apb1rstr {
         if self.i2c1rst() != 0 { try!(write!(f, " i2c1rst"))}
         if self.uart5rst() != 0 { try!(write!(f, " uart5rst"))}
         if self.uart4rst() != 0 { try!(write!(f, " uart4rst"))}
-        if self.uart3rst() != 0 { try!(write!(f, " uart3rst"))}
-        if self.uart2rst() != 0 { try!(write!(f, " uart2rst"))}
+        if self.usart3rst() != 0 { try!(write!(f, " usart3rst"))}
+        if self.usart2rst() != 0 { try!(write!(f, " usart2rst"))}
         if self.spi3rst() != 0 { try!(write!(f, " spi3rst"))}
         if self.spi2rst() != 0 { try!(write!(f, " spi2rst"))}
         if self.wwdgrst() != 0 { try!(write!(f, " wwdgrst"))}
@@ -4167,17 +4167,17 @@ impl ::core::fmt::Debug for Ahb3enr {
 pub struct Apb1enr(pub u32);
 impl Apb1enr {
     #[doc="UART8 clock enable"]
-    #[inline] pub fn uart8enr(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn uart8en(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Returns true if UART8ENR != 0"]
-    #[inline] pub fn test_uart8enr(&self) -> bool {
-        self.uart8enr() != 0
+    #[doc="Returns true if UART8EN != 0"]
+    #[inline] pub fn test_uart8en(&self) -> bool {
+        self.uart8en() != 0
     }
 
-    #[doc="Sets the UART8ENR field."]
-    #[inline] pub fn set_uart8enr<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the UART8EN field."]
+    #[inline] pub fn set_uart8en<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 31);
@@ -4186,17 +4186,17 @@ impl Apb1enr {
     }
 
     #[doc="UART7 clock enable"]
-    #[inline] pub fn uart7enr(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn uart7en(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Returns true if UART7ENR != 0"]
-    #[inline] pub fn test_uart7enr(&self) -> bool {
-        self.uart7enr() != 0
+    #[doc="Returns true if UART7EN != 0"]
+    #[inline] pub fn test_uart7en(&self) -> bool {
+        self.uart7en() != 0
     }
 
-    #[doc="Sets the UART7ENR field."]
-    #[inline] pub fn set_uart7enr<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the UART7EN field."]
+    #[inline] pub fn set_uart7en<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 30);
@@ -4659,8 +4659,8 @@ impl ::core::fmt::Display for Apb1enr {
 impl ::core::fmt::Debug for Apb1enr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.uart8enr() != 0 { try!(write!(f, " uart8enr"))}
-        if self.uart7enr() != 0 { try!(write!(f, " uart7enr"))}
+        if self.uart8en() != 0 { try!(write!(f, " uart8en"))}
+        if self.uart7en() != 0 { try!(write!(f, " uart7en"))}
         if self.dacen() != 0 { try!(write!(f, " dacen"))}
         if self.pwren() != 0 { try!(write!(f, " pwren"))}
         if self.can2en() != 0 { try!(write!(f, " can2en"))}

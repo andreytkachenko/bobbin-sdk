@@ -19,3 +19,69 @@ pub use ::stm32_common::dma::*;
 ::bobbin_mcu::channel!(DMA2_STREAM5, Dma2Stream5, dma2_stream5, DMA2, Dma2, DMA2_STREAM5_CH, DmaCh, DMA2_PERIPH, DMA2_STREAM5_OWNED, DMA2_STREAM5_REF_COUNT, 5);
 ::bobbin_mcu::channel!(DMA2_STREAM6, Dma2Stream6, dma2_stream6, DMA2, Dma2, DMA2_STREAM6_CH, DmaCh, DMA2_PERIPH, DMA2_STREAM6_OWNED, DMA2_STREAM6_REF_COUNT, 6);
 ::bobbin_mcu::channel!(DMA2_STREAM7, Dma2Stream7, dma2_stream7, DMA2, Dma2, DMA2_STREAM7_CH, DmaCh, DMA2_PERIPH, DMA2_STREAM7_OWNED, DMA2_STREAM7_REF_COUNT, 7);
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB1RSTR"), field: Some("DMA1RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Dma1 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.ahb1rstr().dma1rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb1rstr(|r| r.set_dma1rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHB1ENR"), field: Some("DMA1EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Dma1 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.ahb1enr().dma1en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb1enr(|r| r.set_dma1en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("AHB1LPENR"), field: Some("DMA1LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Dma1 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.ahb1lpenr().dma1lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb1lpenr(|r| r.set_dma1lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB1RSTR"), field: Some("DMA2RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Dma2 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.ahb1rstr().dma2rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb1rstr(|r| r.set_dma2rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHB1ENR"), field: Some("DMA2EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Dma2 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.ahb1enr().dma2en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb1enr(|r| r.set_dma2en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("AHB1LPENR"), field: Some("DMA2LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Dma2 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.ahb1lpenr().dma2lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb1lpenr(|r| r.set_dma2lpen(value));
+        self
+    }
+}
+
