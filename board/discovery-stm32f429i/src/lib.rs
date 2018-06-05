@@ -1,7 +1,6 @@
 #![no_std]
 #![feature(use_extern_macros)]
 
-extern crate panic_abort;
 extern crate cortex_m_rt;
 pub extern crate stm32f42x as mcu;
 
@@ -27,6 +26,6 @@ impl bobbin_sys::board::Board for DiscoveryStm32f429i {
     fn id(&self) -> &'static str { "discovery-stm32f429i" }    
 }
 
-cortex_m_rt::default_handler!(bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception);
-cortex_m_rt::exception!(SYS_TICK, bobbin_sys::tick::Tick::tick);
-cortex_m_rt::exception!(PENDSV, bobbin_sys::pend::Pend::pend);
+// cortex_m_rt::default_handler!(bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception);
+cortex_m_rt::exception!(SysTick, bobbin_sys::tick::Tick::tick);
+cortex_m_rt::exception!(PendSV, bobbin_sys::pend::Pend::pend);

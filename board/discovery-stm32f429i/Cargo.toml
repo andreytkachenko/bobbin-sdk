@@ -1,37 +1,31 @@
 [package]
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
 name = "discovery-stm32f429i"
 version = "0.1.0"
-authors = ["Jonathan Soo <jcsoo@agora.com>"]
-
 [[bin]]
+doc = false
 name = "main"
 path = "src/main.rs"
-doc = false
 
-[dependencies.cortex-m-rt]
-features = []
-version = "0.4.0"
-
-[dependencies.panic-abort]
-version = "0.1.1"
-
-[dev-dependencies]
-examples = { path = "../../app/examples" }
-embedded-hal = "0.1.2"
-
-[profile.dev]
-panic = "abort"
-opt-level = "s"
-incremental = false
-lto = true
-
-[profile.release]
-panic = "abort"
-debug = true
-lto = true
-
+[dependencies]
+cortex-m-rt = "0.5.1"
 
 [dependencies.stm32f42x]
-path = "../../mcu/bobbin-stm32/stm32f42x"
 features = ["STM32F42xI"]
+path = "../../mcu/bobbin-stm32/stm32f42x"
 
+[dev-dependencies]
+embedded-hal = "0.1.2"
+
+[dev-dependencies.examples]
+path = "../../app/examples"
+[profile.dev]
+incremental = false
+lto = true
+opt-level = "s"
+panic = "abort"
+
+[profile.release]
+debug = true
+lto = true
+panic = "abort"
