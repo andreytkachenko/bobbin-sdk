@@ -67,10 +67,11 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
 
 
     fn pll48clk(&self) -> Hz {
-        match RCC.dckcfgr2().ck48msel() {
-            U1::B0 => self.pllq(),
-            U1::B1 => unsafe { abort() },
-        }
+        unimplemented!()
+        // match RCC.dckcfgr2().ck48msel() {
+        //     U1::B0 => self.pllq(),
+        //     U1::B1 => unsafe { abort() },
+        // }
     }
 
     fn sysclk(&self) -> Hz {
@@ -194,7 +195,7 @@ pub fn enable_pll_hse_bypass_mode(m: u32, n: u32, p: u32, q: u32) {
     // Wait for HSE Ready
     while rcc.cr().hserdy() == 0 {}
 
-    pwr.with_csr1(|r| r.set_vosrdy(1));
+    pwr.with_csr(|r| r.set_vosrdy(1));
 
     // Set prescalers for AHB, ADC, ABP1, ABP2
 
@@ -222,14 +223,14 @@ pub fn enable_pll_hse_bypass_mode(m: u32, n: u32, p: u32, q: u32) {
 
     rcc.with_apb1enr(|r| r.set_pwren(1));
 
-    pwr.with_cr1(|r| r.set_oden(1));
-    while !pwr.csr1().test_odrdy() {asm!("nop")}
+    pwr.with_cr(|r| r.set_oden(1));
+    while !pwr.csr().test_odrdy() {unsafe{asm!("nop")}}
 
-    pwr.with_cr1(|r| r.set_odswen(1));
-    while !pwr.csr1().test_odswrdy() {asm!("nop")}
+    pwr.with_cr(|r| r.set_odswen(1));
+    while !pwr.csr().test_odswrdy() {unsafe{asm!("nop")}}
 
     // Wait for PLL Ready
-    while rcc.cr().pllrdy() == 0 {asm!("nop")}
+    while rcc.cr().pllrdy() == 0 {unsafe{asm!("nop")}}
 
     // Configure flash settings.
 
@@ -241,7 +242,7 @@ pub fn enable_pll_hse_bypass_mode(m: u32, n: u32, p: u32, q: u32) {
     // Select PLL as SYSCLK source.
 
     rcc.with_cfgr(|r| r.set_sw(0b10));
-    while rcc.cfgr().sws() != 0b10 {asm!("nop")}
+    while rcc.cfgr().sws() != 0b10 {unsafe{asm!("nop")}}
 
     // Disable internal high-speed oscillator.        
     // rcc.with_cr(|r| r.set_hsion(0));
@@ -256,7 +257,7 @@ pub fn enable_pll_hse_mode(m: u32, n: u32, p: u32, q: u32) {
     rcc.with_cr(|r| r.set_hsion(1));
 
     // Wait for HSI Ready
-    while rcc.cr().hsirdy() == 0 {asm!("nop")}
+    while rcc.cr().hsirdy() == 0 {unsafe{asm!("nop")}}
 
     // Select HSI as SYSCLK source. 
     rcc.with_cfgr(|r| r.set_sw(0b00));
@@ -269,9 +270,9 @@ pub fn enable_pll_hse_mode(m: u32, n: u32, p: u32, q: u32) {
     rcc.with_cr(|r| r.set_hseon(1).set_hsebyp(0));
     
     // Wait for HSE Ready
-    while rcc.cr().hserdy() == 0 {asm!("nop")}
+    while rcc.cr().hserdy() == 0 {unsafe{asm!("nop")}}
 
-    pwr.with_csr1(|r| r.set_vosrdy(1));
+    pwr.with_csr(|r| r.set_vosrdy(1));
 
     // Set prescalers for AHB, ADC, ABP1, ABP2
 
@@ -295,7 +296,7 @@ pub fn enable_pll_hse_mode(m: u32, n: u32, p: u32, q: u32) {
     rcc.with_cr(|r| r.set_pllon(1));
     
     // Wait for PLL Ready
-    while rcc.cr().pllrdy() == 0 {asm!("nop")}
+    while rcc.cr().pllrdy() == 0 {unsafe{asm!("nop")}}
 
     // Configure flash settings.
 
@@ -307,7 +308,7 @@ pub fn enable_pll_hse_mode(m: u32, n: u32, p: u32, q: u32) {
     // Select PLL as SYSCLK source.
 
     rcc.with_cfgr(|r| r.set_sw(0b10));
-    while rcc.cfgr().sws() != 0b10 {asm!("nop")}
+    while rcc.cfgr().sws() != 0b10 {unsafe{asm!("nop")}}
     
     // // Disable internal high-speed oscillator.        
     // rcc.with_cr(|r| r.set_hsion(0));
@@ -322,13 +323,13 @@ pub fn enable_pll_hsi_mode() {
     rcc.with_cr(|r| r.set_hsion(1));
 
     // Wait for HSI Ready
-    while rcc.cr().hsirdy() == 0 {asm!("nop")}
+    while rcc.cr().hsirdy() == 0 {unsafe{asm!("nop")}}
 
     // // Select HSI as SYSCLK source. 
     // rcc.with_cfgr(|r| r.set_sw(0b00));
     // while RCC.cfgr().sws() != 0b00 {}
 
-    pwr.with_csr1(|r| r.set_vosrdy(1));
+    pwr.with_csr(|r| r.set_vosrdy(1));
 
     // Set prescalers for AHB, ADC, ABP1, ABP2
 
@@ -360,7 +361,7 @@ pub fn enable_pll_hsi_mode() {
     rcc.with_cr(|r| r.set_pllon(1));
     
     // Wait for PLL Ready
-    while rcc.cr().pllrdy() == 0 {asm!("nop")}
+    while rcc.cr().pllrdy() == 0 {unsafe{asm!("nop")}}
 
     // // Configure flash settings.
 
@@ -372,5 +373,5 @@ pub fn enable_pll_hsi_mode() {
     // // Select PLL as SYSCLK source.
 
     rcc.with_cfgr(|r| r.set_sw(0b10));
-    while rcc.cfgr().sws() != 0b10 {asm!("nop")}
+    while rcc.cfgr().sws() != 0b10 {unsafe{asm!("nop")}}
 }

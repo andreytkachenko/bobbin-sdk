@@ -4,9 +4,9 @@
     (interrupt-count 91)
     (description "STM32F42x")
     (variants
-        (variant (name STM32F42xxE) (link "stm32f42xxE.ld"))
-        (variant (name STM32F42xxG) (link "stm32f42xxG.ld"))
-        (variant (name STM32F42xxI) (link "stm32f42xxI.ld"))   
+        (variant (name STM32F42xE) (link "stm32f42xxE.ld"))
+        (variant (name STM32F42xG) (link "stm32f42xxG.ld"))
+        (variant (name STM32F42xI) (link "stm32f42xxI.ld"))   
     )
 
     (crate
