@@ -880,6 +880,82 @@ impl RccPeriph {
         self
     }
 
+    #[doc="Get the DCKCFGR Register."]
+    #[inline] pub fn dckcfgr_reg(&self) -> ::bobbin_mcu::register::Register<Dckcfgr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dckcfgr, 0x8c)
+    }
+
+    #[doc="Get the *mut pointer for the DCKCFGR register."]
+    #[inline] pub fn dckcfgr_mut(&self) -> *mut Dckcfgr { 
+        self.dckcfgr_reg().ptr()
+    }
+
+    #[doc="Get the *const pointer for the DCKCFGR register."]
+    #[inline] pub fn dckcfgr_ptr(&self) -> *const Dckcfgr { 
+        self.dckcfgr_reg().ptr()
+    }
+
+    #[doc="Read the DCKCFGR register."]
+    #[inline] pub fn dckcfgr(&self) -> Dckcfgr { 
+        self.dckcfgr_reg().read()
+    }
+
+    #[doc="Write the DCKCFGR register."]
+    #[inline] pub fn write_dckcfgr(&self, value: Dckcfgr) -> &Self { 
+        self.dckcfgr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DCKCFGR register."]
+    #[inline] pub fn set_dckcfgr<F: FnOnce(Dckcfgr) -> Dckcfgr>(&self, f: F) -> &Self {
+        self.dckcfgr_reg().set(f);
+        self
+    }
+
+    #[doc="Modify the DCKCFGR register."]
+    #[inline] pub fn with_dckcfgr<F: FnOnce(Dckcfgr) -> Dckcfgr>(&self, f: F) -> &Self {
+        self.dckcfgr_reg().with(f);
+        self
+    }
+
+    #[doc="Get the PLLSAICFGR Register."]
+    #[inline] pub fn pllsaicfgr_reg(&self) -> ::bobbin_mcu::register::Register<Pllsaicfgr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Pllsaicfgr, 0x88)
+    }
+
+    #[doc="Get the *mut pointer for the PLLSAICFGR register."]
+    #[inline] pub fn pllsaicfgr_mut(&self) -> *mut Pllsaicfgr { 
+        self.pllsaicfgr_reg().ptr()
+    }
+
+    #[doc="Get the *const pointer for the PLLSAICFGR register."]
+    #[inline] pub fn pllsaicfgr_ptr(&self) -> *const Pllsaicfgr { 
+        self.pllsaicfgr_reg().ptr()
+    }
+
+    #[doc="Read the PLLSAICFGR register."]
+    #[inline] pub fn pllsaicfgr(&self) -> Pllsaicfgr { 
+        self.pllsaicfgr_reg().read()
+    }
+
+    #[doc="Write the PLLSAICFGR register."]
+    #[inline] pub fn write_pllsaicfgr(&self, value: Pllsaicfgr) -> &Self { 
+        self.pllsaicfgr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PLLSAICFGR register."]
+    #[inline] pub fn set_pllsaicfgr<F: FnOnce(Pllsaicfgr) -> Pllsaicfgr>(&self, f: F) -> &Self {
+        self.pllsaicfgr_reg().set(f);
+        self
+    }
+
+    #[doc="Modify the PLLSAICFGR register."]
+    #[inline] pub fn with_pllsaicfgr<F: FnOnce(Pllsaicfgr) -> Pllsaicfgr>(&self, f: F) -> &Self {
+        self.pllsaicfgr_reg().with(f);
+        self
+    }
+
 }
 
 #[doc="clock control register"]
@@ -2419,6 +2495,44 @@ impl Ahb2rstr {
         self
     }
 
+    #[doc="Hash module reset"]
+    #[inline] pub fn hsahrst(&self) -> ::bobbin_bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if HSAHRST != 0"]
+    #[inline] pub fn test_hsahrst(&self) -> bool {
+        self.hsahrst() != 0
+    }
+
+    #[doc="Sets the HSAHRST field."]
+    #[inline] pub fn set_hsahrst<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="Cryptographic module reset"]
+    #[inline] pub fn cryprst(&self) -> ::bobbin_bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if CRYPRST != 0"]
+    #[inline] pub fn test_cryprst(&self) -> bool {
+        self.cryprst() != 0
+    }
+
+    #[doc="Sets the CRYPRST field."]
+    #[inline] pub fn set_cryprst<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
     #[doc="Camera interface reset"]
     #[inline] pub fn dcmirst(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
@@ -2458,6 +2572,8 @@ impl ::core::fmt::Debug for Ahb2rstr {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.otgfsrst() != 0 { try!(write!(f, " otgfsrst"))}
         if self.rngrst() != 0 { try!(write!(f, " rngrst"))}
+        if self.hsahrst() != 0 { try!(write!(f, " hsahrst"))}
+        if self.cryprst() != 0 { try!(write!(f, " cryprst"))}
         if self.dcmirst() != 0 { try!(write!(f, " dcmirst"))}
         try!(write!(f, "]"));
         Ok(())
@@ -3914,6 +4030,44 @@ impl Ahb2enr {
         self
     }
 
+    #[doc="Hash modules clock enable"]
+    #[inline] pub fn hashen(&self) -> ::bobbin_bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if HASHEN != 0"]
+    #[inline] pub fn test_hashen(&self) -> bool {
+        self.hashen() != 0
+    }
+
+    #[doc="Sets the HASHEN field."]
+    #[inline] pub fn set_hashen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="Cryptographic modules clock enable"]
+    #[inline] pub fn crypen(&self) -> ::bobbin_bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if CRYPEN != 0"]
+    #[inline] pub fn test_crypen(&self) -> bool {
+        self.crypen() != 0
+    }
+
+    #[doc="Sets the CRYPEN field."]
+    #[inline] pub fn set_crypen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
     #[doc="Camera interface enable"]
     #[inline] pub fn dcmien(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
@@ -3953,6 +4107,8 @@ impl ::core::fmt::Debug for Ahb2enr {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.otgfsen() != 0 { try!(write!(f, " otgfsen"))}
         if self.rngen() != 0 { try!(write!(f, " rngen"))}
+        if self.hashen() != 0 { try!(write!(f, " hashen"))}
+        if self.crypen() != 0 { try!(write!(f, " crypen"))}
         if self.dcmien() != 0 { try!(write!(f, " dcmien"))}
         try!(write!(f, "]"));
         Ok(())
@@ -5509,6 +5665,44 @@ impl Ahb2lpenr {
         self
     }
 
+    #[doc="Hash modules clock enable during Sleep mode"]
+    #[inline] pub fn hashlpen(&self) -> ::bobbin_bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if HASHLPEN != 0"]
+    #[inline] pub fn test_hashlpen(&self) -> bool {
+        self.hashlpen() != 0
+    }
+
+    #[doc="Sets the HASHLPEN field."]
+    #[inline] pub fn set_hashlpen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="Cryptography modules clock enable during Sleep mode"]
+    #[inline] pub fn cryplpen(&self) -> ::bobbin_bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if CRYPLPEN != 0"]
+    #[inline] pub fn test_cryplpen(&self) -> bool {
+        self.cryplpen() != 0
+    }
+
+    #[doc="Sets the CRYPLPEN field."]
+    #[inline] pub fn set_cryplpen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
     #[doc="Camera interface enable during Sleep mode"]
     #[inline] pub fn dcmilpen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
@@ -5548,6 +5742,8 @@ impl ::core::fmt::Debug for Ahb2lpenr {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.otgfslpen() != 0 { try!(write!(f, " otgfslpen"))}
         if self.rnglpen() != 0 { try!(write!(f, " rnglpen"))}
+        if self.hashlpen() != 0 { try!(write!(f, " hashlpen"))}
+        if self.cryplpen() != 0 { try!(write!(f, " cryplpen"))}
         if self.dcmilpen() != 0 { try!(write!(f, " dcmilpen"))}
         try!(write!(f, "]"));
         Ok(())
@@ -7098,6 +7294,240 @@ impl ::core::fmt::Debug for Plli2scfgr {
         if self.plli2sr() != 0 { try!(write!(f, " plli2sr=0x{:x}", self.plli2sr()))}
         if self.plli2sq() != 0 { try!(write!(f, " plli2sq=0x{:x}", self.plli2sq()))}
         if self.plli2sn() != 0 { try!(write!(f, " plli2sn=0x{:x}", self.plli2sn()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="RCC Dedicated Clock Configuration Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dckcfgr(pub u32);
+impl Dckcfgr {
+    #[doc="PLLI2S division factor for SAI1 clock"]
+    #[inline] pub fn plli2sdivq(&self) -> ::bobbin_bits::U5 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
+    }
+
+    #[doc="Returns true if PLLI2SDIVQ != 0"]
+    #[inline] pub fn test_plli2sdivq(&self) -> bool {
+        self.plli2sdivq() != 0
+    }
+
+    #[doc="Sets the PLLI2SDIVQ field."]
+    #[inline] pub fn set_plli2sdivq<V: Into<::bobbin_bits::U5>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U5 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1f << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+    #[doc="PLLSAI division factor for SAI1 clock"]
+    #[inline] pub fn pllsaidivq(&self) -> ::bobbin_bits::U5 {
+        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1f) as u8) } // [12:8]
+    }
+
+    #[doc="Returns true if PLLSAIDIVQ != 0"]
+    #[inline] pub fn test_pllsaidivq(&self) -> bool {
+        self.pllsaidivq() != 0
+    }
+
+    #[doc="Sets the PLLSAIDIVQ field."]
+    #[inline] pub fn set_pllsaidivq<V: Into<::bobbin_bits::U5>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U5 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1f << 8);
+        self.0 |= value << 8;
+        self
+    }
+
+    #[doc="division factor for LCD_CLK"]
+    #[inline] pub fn pllsaidivr(&self) -> ::bobbin_bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
+    }
+
+    #[doc="Returns true if PLLSAIDIVR != 0"]
+    #[inline] pub fn test_pllsaidivr(&self) -> bool {
+        self.pllsaidivr() != 0
+    }
+
+    #[doc="Sets the PLLSAIDIVR field."]
+    #[inline] pub fn set_pllsaidivr<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 16);
+        self.0 |= value << 16;
+        self
+    }
+
+    #[doc="SAI1-A clock source selection"]
+    #[inline] pub fn sai1asrc(&self) -> ::bobbin_bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
+    }
+
+    #[doc="Returns true if SAI1ASRC != 0"]
+    #[inline] pub fn test_sai1asrc(&self) -> bool {
+        self.sai1asrc() != 0
+    }
+
+    #[doc="Sets the SAI1ASRC field."]
+    #[inline] pub fn set_sai1asrc<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 20);
+        self.0 |= value << 20;
+        self
+    }
+
+    #[doc="SAI1-B clock source selection"]
+    #[inline] pub fn sai1bsrc(&self) -> ::bobbin_bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
+    }
+
+    #[doc="Returns true if SAI1BSRC != 0"]
+    #[inline] pub fn test_sai1bsrc(&self) -> bool {
+        self.sai1bsrc() != 0
+    }
+
+    #[doc="Sets the SAI1BSRC field."]
+    #[inline] pub fn set_sai1bsrc<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 22);
+        self.0 |= value << 22;
+        self
+    }
+
+    #[doc="Timers clocks prescalers selection"]
+    #[inline] pub fn timpre(&self) -> ::bobbin_bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
+    }
+
+    #[doc="Returns true if TIMPRE != 0"]
+    #[inline] pub fn test_timpre(&self) -> bool {
+        self.timpre() != 0
+    }
+
+    #[doc="Sets the TIMPRE field."]
+    #[inline] pub fn set_timpre<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 24);
+        self.0 |= value << 24;
+        self
+    }
+
+}
+
+impl From<u32> for Dckcfgr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dckcfgr(other)
+    }
+}
+
+impl ::core::fmt::Display for Dckcfgr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dckcfgr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.plli2sdivq() != 0 { try!(write!(f, " plli2sdivq=0x{:x}", self.plli2sdivq()))}
+        if self.pllsaidivq() != 0 { try!(write!(f, " pllsaidivq=0x{:x}", self.pllsaidivq()))}
+        if self.pllsaidivr() != 0 { try!(write!(f, " pllsaidivr=0x{:x}", self.pllsaidivr()))}
+        if self.sai1asrc() != 0 { try!(write!(f, " sai1asrc=0x{:x}", self.sai1asrc()))}
+        if self.sai1bsrc() != 0 { try!(write!(f, " sai1bsrc=0x{:x}", self.sai1bsrc()))}
+        if self.timpre() != 0 { try!(write!(f, " timpre"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="RCC PLL configuration register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Pllsaicfgr(pub u32);
+impl Pllsaicfgr {
+    #[doc="PLLSAI division factor for LCD clock"]
+    #[inline] pub fn pllsair(&self) -> ::bobbin_bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x7) as u8) } // [30:28]
+    }
+
+    #[doc="Returns true if PLLSAIR != 0"]
+    #[inline] pub fn test_pllsair(&self) -> bool {
+        self.pllsair() != 0
+    }
+
+    #[doc="Sets the PLLSAIR field."]
+    #[inline] pub fn set_pllsair<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x7 << 28);
+        self.0 |= value << 28;
+        self
+    }
+
+    #[doc="PLLSAI division factor for SAI1 clock"]
+    #[inline] pub fn pllsaiq(&self) -> ::bobbin_bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
+    }
+
+    #[doc="Returns true if PLLSAIQ != 0"]
+    #[inline] pub fn test_pllsaiq(&self) -> bool {
+        self.pllsaiq() != 0
+    }
+
+    #[doc="Sets the PLLSAIQ field."]
+    #[inline] pub fn set_pllsaiq<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0xf << 24);
+        self.0 |= value << 24;
+        self
+    }
+
+    #[doc="PLLSAI division factor for VCO"]
+    #[inline] pub fn pllsain(&self) -> ::bobbin_bits::U9 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1ff) as u16) } // [14:6]
+    }
+
+    #[doc="Returns true if PLLSAIN != 0"]
+    #[inline] pub fn test_pllsain(&self) -> bool {
+        self.pllsain() != 0
+    }
+
+    #[doc="Sets the PLLSAIN field."]
+    #[inline] pub fn set_pllsain<V: Into<::bobbin_bits::U9>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U9 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1ff << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+}
+
+impl From<u32> for Pllsaicfgr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pllsaicfgr(other)
+    }
+}
+
+impl ::core::fmt::Display for Pllsaicfgr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Pllsaicfgr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.pllsair() != 0 { try!(write!(f, " pllsair=0x{:x}", self.pllsair()))}
+        if self.pllsaiq() != 0 { try!(write!(f, " pllsaiq=0x{:x}", self.pllsaiq()))}
+        if self.pllsain() != 0 { try!(write!(f, " pllsain=0x{:x}", self.pllsain()))}
         try!(write!(f, "]"));
         Ok(())
     }

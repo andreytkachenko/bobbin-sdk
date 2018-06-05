@@ -62,6 +62,5 @@ pub trait ClockProvider : Default {
     fn i2c1(&self) -> Hz { unimplemented!() }
     fn i2c2(&self) -> Hz { unimplemented!() }
     fn i2c3(&self) -> Hz { unimplemented!() }
-    fn i2c4(&self) -> Hz { unimplemented!() }
 }
 

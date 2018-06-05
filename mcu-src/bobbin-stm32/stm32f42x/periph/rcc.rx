@@ -521,6 +521,18 @@
             (description "Random number generator module reset")
         )
         (field
+            (name HSAHRST)
+            (bit-offset 5)
+            (bit-width 1)
+            (description "Hash module reset")
+        )
+        (field
+            (name CRYPRST)
+            (bit-offset 4)
+            (bit-width 1)
+            (description "Cryptographic module reset")
+        )
+        (field
             (name DCMIRST)
             (bit-offset 0)
             (bit-width 1)
@@ -904,63 +916,54 @@
             (bit-offset 8)
             (bit-width 1)
             (description "IO port I clock enable")
-
         )
         (field
             (name GPIOHEN)
             (bit-offset 7)
             (bit-width 1)
             (description "IO port H clock enable")
-
         )
         (field
             (name GPIOGEN)
             (bit-offset 6)
             (bit-width 1)
             (description "IO port G clock enable")
-
         )
         (field
             (name GPIOFEN)
             (bit-offset 5)
             (bit-width 1)
             (description "IO port F clock enable")
-
         )                       
         (field
             (name GPIOEEN)
             (bit-offset 4)
             (bit-width 1)
             (description "IO port E clock enable")
-
         )   
         (field
             (name GPIODEN)
             (bit-offset 3)
             (bit-width 1)
             (description "IO port D clock enable")
-
         )   
         (field
             (name GPIOCEN)
             (bit-offset 2)
             (bit-width 1)
             (description "IO port C clock enable")
-
         )
         (field
             (name GPIOBEN)
             (bit-offset 1)
             (bit-width 1)
             (description "IO port B clock enable")
-
         )                      
         (field
             (name GPIOAEN)
             (bit-offset 0)
             (bit-width 1)
             (description "IO port A clock enable")
-
         )
     )
     (register
@@ -981,7 +984,18 @@
             (bit-offset 6)
             (bit-width 1)
             (description "Random number generator clock enable")
-
+        )
+        (field
+            (name HASHEN)
+            (bit-offset 5)
+            (bit-width 1)
+            (description "Hash modules clock enable")
+        )
+        (field
+            (name CRYPEN)
+            (bit-offset 4)
+            (bit-width 1)
+            (description "Cryptographic modules clock enable")
         )
         (field
             (name DCMIEN)
@@ -1016,14 +1030,12 @@
             (bit-offset 31)
             (bit-width 1)
             (description "UART8 clock enable")
-
         )
         (field
             (name UART7ENR)
             (bit-offset 30)
             (bit-width 1)
             (description "UART7 clock enable")
-
         )
         (field
             (name DACEN)
@@ -1054,133 +1066,114 @@
             (bit-offset 23)
             (bit-width 1)
             (description "I2C3 clock enable")
-
         )
         (field
             (name I2C2EN)
             (bit-offset 22)
             (bit-width 1)
             (description "I2C2 clock enable")
-
         )
         (field
             (name I2C1EN)
             (bit-offset 21)
             (bit-width 1)
             (description "I2C1 clock enable")
-
         )
         (field
             (name UART5EN)
             (bit-offset 20)
             (bit-width 1)
             (description "UART5 clock enable")
-
         )
         (field
             (name UART4EN)
             (bit-offset 19)
             (bit-width 1)
             (description "UART4 clock enable")
-
         )
         (field
             (name USART3EN)
             (bit-offset 18)
             (bit-width 1)
             (description "USART3 clock enable")
-
         )
         (field
             (name USART2EN)
             (bit-offset 17)
             (bit-width 1)
             (description "USART 2 clock enable")
-
         )
         (field
             (name SPI3EN)
             (bit-offset 15)
             (bit-width 1)
             (description "SPI3 clock enable")
-
         )
         (field
             (name SPI2EN)
             (bit-offset 14)
             (bit-width 1)
             (description "SPI2 clock enable")
-
         )
         (field
             (name WWDGEN)
             (bit-offset 11)
             (bit-width 1)
             (description "Window watchdog clock enable")
-
         )
         (field
             (name TIM14EN)
             (bit-offset 8)
             (bit-width 1)
             (description "TIM14 clock enable")
-
         )
         (field
             (name TIM13EN)
             (bit-offset 7)
             (bit-width 1)
             (description "TIM13 clock enable")
-
         )
         (field
             (name TIM12EN)
             (bit-offset 6)
             (bit-width 1)
             (description "TIM12 clock enable")
-
         )
         (field
             (name TIM7EN)
             (bit-offset 5)
             (bit-width 1)
             (description "TIM7 clock enable")
-
         )
         (field
             (name TIM6EN)
             (bit-offset 4)
             (bit-width 1)
             (description "TIM6 clock enable")
-
         )
         (field
             (name TIM5EN)
             (bit-offset 3)
             (bit-width 1)
             (description "TIM5 clock enable")
-
         )
         (field
             (name TIM4EN)
             (bit-offset 2)
             (bit-width 1)
             (description "TIM4 clock enable")
-
         )
         (field
             (name TIM3EN)
             (bit-offset 1)
             (bit-width 1)
             (description "TIM3 clock enable")
-
         )
         (field
             (name TIM2EN)
             (bit-offset 0)
             (bit-width 1)
             (description "TIM2 clock enable")
-
         )
     )
     (register
@@ -1207,56 +1200,48 @@
             (bit-offset 21)
             (bit-width 1)
             (description "SPI6 clock enable")
-
         )
         (field
             (name SPI5EN)
             (bit-offset 20)
             (bit-width 1)
             (description "SPI5 clock enable")
-
         )
         (field
             (name TIM11EN)
             (bit-offset 18)
             (bit-width 1)
             (description "TIM11 clock enable")
-
         )
         (field
             (name TIM10EN)
             (bit-offset 17)
             (bit-width 1)
             (description "TIM10 clock enable")
-
         )
         (field
             (name TIM9EN)
             (bit-offset 16)
             (bit-width 1)
             (description "TIM9 clock enable")
-
         )
         (field
             (name SYSCFGEN)
             (bit-offset 14)
             (bit-width 1)
             (description "System configuration controller clock enable")
-
         )
         (field
             (name SPI4EN)
             (bit-offset 13)
             (bit-width 1)
             (description "SPI4 clock enable")
-
         )
         (field
             (name SPI1EN)
             (bit-offset 12)
             (bit-width 1)
             (description "SPI1 clock enable")
-
         )        
         (field
             (name SDIOEN)
@@ -1269,49 +1254,42 @@
             (bit-offset 10)
             (bit-width 1)
             (description "ADC3 clock enable")
-
         )
         (field
             (name ADC2EN)
             (bit-offset 9)
             (bit-width 1)
             (description "ADC2 clock enable")
-
         )
         (field
             (name ADC1EN)
             (bit-offset 8)
             (bit-width 1)
             (description "ADC1 clock enable")
-
         )
         (field
             (name USART6EN)
             (bit-offset 5)
             (bit-width 1)
             (description "USART6 clock enable")
-
         )
         (field
             (name USART1EN)
             (bit-offset 4)
             (bit-width 1)
             (description "USART1 clock enable")
-
         )
         (field
             (name TIM8EN)
             (bit-offset 1)
             (bit-width 1)
             (description "TIM8 clock enable")
-
         )
         (field
             (name TIM1EN)
             (bit-offset 0)
             (bit-width 1)
             (description "TIM1 clock enable")
-
         )
     )
     (register
@@ -1496,6 +1474,18 @@
             (bit-offset 6)
             (bit-width 1)
             (description "Random number generator clock enable during Sleep mode")
+        )
+        (field
+            (name HASHLPEN)
+            (bit-offset 5)
+            (bit-width 1)
+            (description "Hash modules clock enable during Sleep mode")
+        )
+        (field
+            (name CRYPLPEN)
+            (bit-offset 4)
+            (bit-width 1)
+            (description "Cryptography modules clock enable during Sleep mode")
         )
         (field
             (name DCMILPEN)
@@ -1981,6 +1971,76 @@
             (bit-offset 6)
             (bit-width 9)
             (description "PLLI2S multiplication factor for VCO")
+        )
+    )
+    (register
+        (name DCKCFGR)
+        (offset 0x8c)
+        (size 0x20)
+        (access read-write)
+        (reset-value 0x0)
+        (description "RCC Dedicated Clock Configuration Register")
+        (field
+            (name PLLI2SDIVQ)
+            (bit-offset 0)
+            (bit-width 5)
+            (description "PLLI2S division factor for SAI1 clock")
+        )
+        (field
+            (name PLLSAIDIVQ)
+            (bit-offset 8)
+            (bit-width 5)
+            (description "PLLSAI division factor for SAI1 clock")
+        )
+        (field
+            (name PLLSAIDIVR)
+            (bit-offset 16)
+            (bit-width 2)
+            (description "division factor for LCD_CLK")
+        )
+        (field
+            (name SAI1ASRC)
+            (bit-offset 20)
+            (bit-width 2)
+            (description "SAI1-A clock source selection")
+        )
+        (field
+            (name SAI1BSRC)
+            (bit-offset 22)
+            (bit-width 2)
+            (description "SAI1-B clock source selection")
+        )
+        (field
+            (name TIMPRE)
+            (bit-offset 24)
+            (bit-width 1)
+            (description "Timers clocks prescalers selection")
+        )
+    )
+    (register
+        (name PLLSAICFGR)
+        (offset 0x88)
+        (size 0x20)
+        (access read-write)
+        (reset-value 0x24003000)
+        (description "RCC PLL configuration register")
+        (field
+            (name PLLSAIR)
+            (bit-offset 28)
+            (bit-width 3)
+            (description "PLLSAI division factor for LCD clock")
+        )
+        (field
+            (name PLLSAIQ)
+            (bit-offset 24)
+            (bit-width 4)
+            (description "PLLSAI division factor for SAI1 clock")
+        )
+        (field
+            (name PLLSAIN)
+            (bit-offset 6)
+            (bit-width 9)
+            (description "PLLSAI division factor for VCO")
         )
     )
 )
