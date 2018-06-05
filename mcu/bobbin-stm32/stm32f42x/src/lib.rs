@@ -20,9 +20,6 @@ pub mod flash;
 pub mod pwr;
 pub mod syscfg;
 pub mod dbg;
-pub mod ethernet_mac;
-pub mod ethernet_ptp;
-pub mod ethernet_dma;
 pub mod dac;
 pub mod c_adc;
 pub mod iwdg;
@@ -41,6 +38,8 @@ pub mod dma;
 pub mod sig;
 pub mod pin;
 pub mod irq;
+pub mod clock;
+
 
 #[derive(Debug, Default)]
 pub struct Stm32f42x {}

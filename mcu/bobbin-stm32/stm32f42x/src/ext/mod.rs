@@ -1,5 +1,9 @@
 pub use stm32_common::ext::*;
 
+pub mod rcc;
+pub mod clock;
+pub mod flash;
+
 use bobbin_mcu::mcu::{GetActiveIrq, IrqEnable, Pend, Sleep};
 use nvic::NVIC;
 use scb::SCB;

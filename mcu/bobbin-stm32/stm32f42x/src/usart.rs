@@ -8,4 +8,3 @@ pub use ::stm32_common::usart_f24::*;
 ::bobbin_mcu::periph!( USART6, Usart6, USART6_PERIPH, UsartPeriph, USART6_OWNED, USART6_REF_COUNT, 0x40011400, 0x05, 0x3a);
 ::bobbin_mcu::periph!( UART7, Uart7, UART7_PERIPH, UsartPeriph, UART7_OWNED, UART7_REF_COUNT, 0x40007800, 0x06, 0x3b);
 ::bobbin_mcu::periph!( UART8, Uart8, UART8_PERIPH, UsartPeriph, UART8_OWNED, UART8_REF_COUNT, 0x40007c00, 0x07, 0x3c);
-
