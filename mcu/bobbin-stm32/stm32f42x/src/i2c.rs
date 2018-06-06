@@ -1,11 +1,11 @@
 pub use ::stm32_common::i2c_v1::*;
 
-::bobbin_mcu::periph!( I2C3, I2c3, I2C3_PERIPH, I2cPeriph, I2C3_OWNED, I2C3_REF_COUNT, 0x40005c00, 0x00, 0x24);
-::bobbin_mcu::periph!( I2C2, I2c2, I2C2_PERIPH, I2cPeriph, I2C2_OWNED, I2C2_REF_COUNT, 0x40005800, 0x01, 0x25);
-::bobbin_mcu::periph!( I2C1, I2c1, I2C1_PERIPH, I2cPeriph, I2C1_OWNED, I2C1_REF_COUNT, 0x40005400, 0x02, 0x26);
+::bobbin_mcu::periph!( I2C1, I2c1, I2C1_PERIPH, I2cPeriph, I2C1_OWNED, I2C1_REF_COUNT, 0x40005400, 0x00, 0x27);
+::bobbin_mcu::periph!( I2C2, I2c2, I2C2_PERIPH, I2cPeriph, I2C2_OWNED, I2C2_REF_COUNT, 0x40005800, 0x01, 0x28);
+::bobbin_mcu::periph!( I2C3, I2c3, I2C3_PERIPH, I2cPeriph, I2C3_OWNED, I2C3_REF_COUNT, 0x40005c00, 0x02, 0x29);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("I2C1RST"), description: None }
-impl ::bobbin_mcu::gate::GateRst for I2c3 {
+impl ::bobbin_mcu::gate::GateRst for I2c1 {
     #[inline]
     fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().i2c1rst() }
     #[inline]
@@ -16,7 +16,7 @@ impl ::bobbin_mcu::gate::GateRst for I2c3 {
 }
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("I2C1EN"), description: None }
-impl ::bobbin_mcu::gate::GateEn for I2c3 {
+impl ::bobbin_mcu::gate::GateEn for I2c1 {
     #[inline]
     fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().i2c1en() }
     #[inline]
@@ -27,7 +27,7 @@ impl ::bobbin_mcu::gate::GateEn for I2c3 {
 }
 
 // Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("I2C1LPEN"), description: None }
-impl ::bobbin_mcu::gate::GateSleepEn for I2c3 {
+impl ::bobbin_mcu::gate::GateSleepEn for I2c1 {
     #[inline]
     fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().i2c1lpen() }
     #[inline]
@@ -71,7 +71,7 @@ impl ::bobbin_mcu::gate::GateSleepEn for I2c2 {
 }
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("I2C3RST"), description: None }
-impl ::bobbin_mcu::gate::GateRst for I2c1 {
+impl ::bobbin_mcu::gate::GateRst for I2c3 {
     #[inline]
     fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().i2c3rst() }
     #[inline]
@@ -82,7 +82,7 @@ impl ::bobbin_mcu::gate::GateRst for I2c1 {
 }
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("I2C3EN"), description: None }
-impl ::bobbin_mcu::gate::GateEn for I2c1 {
+impl ::bobbin_mcu::gate::GateEn for I2c3 {
     #[inline]
     fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().i2c3en() }
     #[inline]
@@ -93,7 +93,7 @@ impl ::bobbin_mcu::gate::GateEn for I2c1 {
 }
 
 // Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("I2C3LPEN"), description: None }
-impl ::bobbin_mcu::gate::GateSleepEn for I2c1 {
+impl ::bobbin_mcu::gate::GateSleepEn for I2c3 {
     #[inline]
     fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().i2c3lpen() }
     #[inline]

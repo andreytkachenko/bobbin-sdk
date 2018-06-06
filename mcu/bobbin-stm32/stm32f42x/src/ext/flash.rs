@@ -48,15 +48,34 @@ impl FlashErase for FlashPeriph {
 
     fn erase_start(&self, addr: *mut u8) -> Result<(), FlashError> {
         // ignore length for now
+        // ** Not all sectors may be present depending on memory
+        // ** size and bank arrangement
+        // See reference manual section 3.4 for details 
         let snb = match addr as u32 {
             0x0800_0000 => 0,
-            0x0800_8000 => 1,
-            0x0801_0000 => 2,
-            0x0801_8000 => 3,
-            0x0802_0000 => 4,
-            0x0804_0000 => 5,
-            0x0808_0000 => 6,
-            0x080c_0000 => 7,
+            0x0800_4000 => 1,
+            0x0800_8000 => 2,
+            0x0800_c000 => 3,            
+            0x0801_0000 => 4,
+            0x0802_0000 => 5,
+            0x0804_0000 => 6,
+            0x0806_0000 => 7,
+            0x0808_0000 => 8,
+            0x080a_0000 => 9,
+            0x080c_0000 => 10,
+            0x080e_0000 => 11,
+            0x0810_0000 => 12,
+            0x0810_4000 => 13,
+            0x0810_8000 => 14,
+            0x0810_c000 => 15,            
+            0x0811_0000 => 16,
+            0x0812_0000 => 17,
+            0x0814_0000 => 18,
+            0x0816_0000 => 19,
+            0x0818_0000 => 20,
+            0x081a_0000 => 21,
+            0x081c_0000 => 22,
+            0x081e_0000 => 23,            
             _ => return Err(FlashError::InvalidEraseAddr),
         };        
         self.with_cr(|r| r.set_snb(snb).set_ser(1).set_strt(1));
