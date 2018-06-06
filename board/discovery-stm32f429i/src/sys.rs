@@ -64,7 +64,6 @@ impl SystemProvider for Board {
 
     fn init_console(_: &Self::Clk, _: &mut Heap) {
         use prelude::*;
-        use mcu::ext::rcc::DedicatedClock;
         use mcu::usart::*;
         use mcu::pin::*;
 
@@ -84,7 +83,6 @@ impl SystemProvider for Board {
             .connect_to(USART);
 
         USART
-            .set_clock_source(DedicatedClock::Hsi)
             .gate_enable()
             .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
             .enable();

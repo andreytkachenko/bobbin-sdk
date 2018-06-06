@@ -59,6 +59,10 @@ impl<CP> ClockFor<::wwdg::Wwdg> for Clocks<CP> where CP: ClockProvider {
     fn clock_for(&self, _: ::wwdg::Wwdg) -> Hz { self.pclk1() }
 }
 
+impl<CP> ClockFor<::wwdg::Wwdg> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::wwdg::Wwdg) -> Hz { self.pclk1() }
+}
+
 impl<CP> ClockFor<::crc::Crc> for Clocks<CP> where CP: ClockProvider {
     fn clock_for(&self, _: ::crc::Crc) -> Hz { self.hclk() }
 }
@@ -123,8 +127,20 @@ impl<CP> ClockFor<::adc::Adc1> for Clocks<CP> where CP: ClockProvider {
     fn clock_for(&self, _: ::adc::Adc1) -> Hz { self.pclk2() }
 }
 
+impl<CP> ClockFor<::adc::Adc1> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::adc::Adc1) -> Hz { self.pclk2() }
+}
+
 impl<CP> ClockFor<::adc::Adc2> for Clocks<CP> where CP: ClockProvider {
     fn clock_for(&self, _: ::adc::Adc2) -> Hz { self.pclk2() }
+}
+
+impl<CP> ClockFor<::adc::Adc2> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::adc::Adc2) -> Hz { self.pclk2() }
+}
+
+impl<CP> ClockFor<::adc::Adc3> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::adc::Adc3) -> Hz { self.pclk2() }
 }
 
 impl<CP> ClockFor<::adc::Adc3> for Clocks<CP> where CP: ClockProvider {

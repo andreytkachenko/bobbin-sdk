@@ -89,6 +89,39 @@ impl ::bobbin_mcu::gate::GateSleepEn for Adc1 {
 }
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("ADCRST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Adc1 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2rstr().adcrst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_adcrst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("ADC1EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Adc1 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2enr().adc1en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_adc1en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB2LPENR"), field: Some("ADC1LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Adc1 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2lpenr().adc1lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2lpenr(|r| r.set_adc1lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("ADCRST"), description: None }
 impl ::bobbin_mcu::gate::GateRst for Adc2 {
     #[inline]
     fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2rstr().adcrst() }
@@ -117,6 +150,72 @@ impl ::bobbin_mcu::gate::GateSleepEn for Adc2 {
     #[inline]
     fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
         ::rcc::RCC.with_apb2lpenr(|r| r.set_adc2lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("ADCRST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Adc2 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2rstr().adcrst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_adcrst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("ADC2EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Adc2 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2enr().adc2en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_adc2en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB2LPENR"), field: Some("ADC2LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Adc2 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2lpenr().adc2lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2lpenr(|r| r.set_adc2lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("ADCRST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Adc3 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2rstr().adcrst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_adcrst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("ADC3EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Adc3 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2enr().adc3en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_adc3en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB2LPENR"), field: Some("ADC3LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Adc3 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2lpenr().adc3lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2lpenr(|r| r.set_adc3lpen(value));
         self
     }
 }

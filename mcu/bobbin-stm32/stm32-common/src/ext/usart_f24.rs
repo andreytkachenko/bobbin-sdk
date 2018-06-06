@@ -62,7 +62,6 @@ impl Configure<Config> for UsartPeriph {
         }
     }
 
-
     fn configure(&self, cfg: Config) -> &Self {        
         self.set_cr1(|_| cfg.cr1);
         self.set_cr2(|_| cfg.cr2);
@@ -95,7 +94,6 @@ impl Write for UsartPeriph {
         Ok(())
     }
 }
-
 
 impl SerialTx<u8> for UsartPeriph {    
     fn can_tx(&self) -> bool {
